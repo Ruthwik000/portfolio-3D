@@ -10,6 +10,14 @@ const Navbar = () => {
         <NavLink to='/about' className={({ isActive }) => isActive ? "text-blue-600" : "text-black" }>
           About
         </NavLink>
+        <a
+          href="https://drive.google.com/file/d/1uAsnKh4eCIuQ5zOrGedltqPtKQokSCVL/view?usp=drivesdk"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-black hover:text-blue-600"
+        >
+          Resume
+        </a>
         <NavLink to='/projects' className={({ isActive }) => isActive ? "text-blue-600" : "text-black"}>
           Projects
         </NavLink>
