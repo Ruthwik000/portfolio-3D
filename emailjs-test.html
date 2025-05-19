@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmailJS Test</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // https://dashboard.emailjs.com/admin/account
+            emailjs.init('vrSwoob1l0--H8H7S');
+        })();
+    </script>
+    <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                // Log the form data
+                console.log('Form data:', {
+                    from_name: this.from_name.value,
+                    from_email: this.from_email.value,
+                    message: this.message.value
+                });
+
+                // these IDs from the previous steps
+                emailjs.sendForm('service_noli83h', 'template_nsy5zw7', this)
+                    .then(function() {
+                        console.log('SUCCESS!');
+                        document.getElementById('result').textContent = 'Email sent successfully!';
+                        document.getElementById('result').style.color = 'green';
+                    }, function(error) {
+                        console.log('FAILED...', error);
+                        document.getElementById('result').textContent = 'Failed to send email: ' + error.text;
+                        document.getElementById('result').style.color = 'red';
+                    });
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>EmailJS Test Form</h1>
+    <form id="contact-form">
+        <div>
+            <label for="from_name">Name</label>
+            <input type="text" name="from_name" id="from_name" required>
+        </div>
+        <div>
+            <label for="from_email">Email</label>
+            <input type="email" name="from_email" id="from_email" required>
+        </div>
+        <div>
+            <label for="message">Message</label>
+            <textarea name="message" id="message" required></textarea>
+        </div>
+        <input type="hidden" name="to_name" value="Ruthwik">
+        <input type="hidden" name="to_email" value="gruthwik44@gmail.com">
+        <div>
+            <button type="submit">Send</button>
+        </div>
+    </form>
+    <div id="result" style="margin-top: 20px; font-weight: bold;"></div>
+</body>
+</html>
